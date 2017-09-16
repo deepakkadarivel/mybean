@@ -1,0 +1,61 @@
+@import 'variable';
+
+$grey-border: #eee;
+$grey-text: #aaa;
+$black: #000;
+$white: #fff;
+
+html {
+  font-size: 10px;
+
+  @include lg {
+    font-size: 12px;
+  }
+
+  @include xl {
+    font-size: 14px;
+  }
+}
+
+body {
+  color: $black;
+  font-family: $font-family-secondary;
+}
+
+a:hover {
+  color: $black;
+}
+
+a:focus {
+  outline: none;
+}
+
+.App {
+  font-size: 1.2rem;
+
+  @include md {
+  }
+
+  @include md {
+  }
+}
+
+.vertical-container {
+  height: 100vh;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.flex-container-column {
+  -webkit-flex-direction: column;
+  flex-direction:         column;
+}
+
+.justifyCenter {
+  display: flex;
+  justify-content: center;
+}

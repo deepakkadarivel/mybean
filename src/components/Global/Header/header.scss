@@ -1,0 +1,19 @@
+@import '../../../scss/base/variable';
+
+.pt-navbar-heading {
+  font-family: $font-family-primary;
+}
+
+.Menu-link {
+  color: $grey;
+  display: inline-block;
+  font-family: $font-family-secondary;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  line-height: 3rem;
+  text-decoration: none;
+}
+
+.Menu-link--active {
+  color: $black;
+}
