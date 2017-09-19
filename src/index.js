@@ -7,7 +7,7 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const networkInterface = createNetworkInterface({
-    uri: 'http://localhost:8080/graphql'
+    uri: 'http://localhost:8181/graphql'
 });
 
 networkInterface.use([{

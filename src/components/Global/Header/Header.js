@@ -1,10 +1,27 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {Menu, MenuDivider, MenuItem, Popover, Position} from "@blueprintjs/core";
 import './header.css'
 import {withRouter} from 'react-router'
-import {MW_USER_ID} from "../../../constants";
+import Button from "../Button/Button";
+import appConstants from "../../../appConstants";
 
-const userId = localStorage.getItem(MW_USER_ID);
+const userId = localStorage.getItem(appConstants.MW_USER_ID);
+const userName = localStorage.getItem(appConstants.MW_USER_NAME);
+
+const compassMenu = (
+    <Menu>
+        <MenuItem iconName="graph" text="Graph"/>
+        <MenuItem iconName="map" text="Map"/>
+        <MenuItem iconName="th" text="Table" shouldDismissPopover={false}/>
+        <MenuItem iconName="zoom-to-fit" text="Nucleus" disabled={true}/>
+        <MenuDivider/>
+        <MenuItem iconName="cog" text="Settings...">
+            <MenuItem iconName="add" text="Add new application" disabled={true}/>
+            <MenuItem iconName="remove" text="Remove application"/>
+        </MenuItem>
+    </Menu>
+);
 
 class Header extends Component {
 
@@ -29,6 +46,15 @@ class Header extends Component {
                         <Link to='/login' className='ml1 no-underline black'>
                             <button className='pt-button pt-minimal'>Login</button>
                         </Link>
+                        }
+                        {userId &&
+                        <Popover content={compassMenu} position={Position.BOTTOM_RIGHT}>
+                            <Button
+                                name={userName}
+                                buttonClass="pt-button pt-minimal pt-icon-user"
+                                onClick={() => ({})}
+                            />
+                        </Popover>
                         }
                     </div>
                 </nav>
