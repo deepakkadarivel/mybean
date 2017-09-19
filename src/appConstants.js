@@ -24,6 +24,8 @@ const appConstants = {
     MW_USER_NAME: 'medwall-user-name',
     MW_USER_EMAIL: 'medwall-user-email',
     MW_USER_PHONE: 'medwall-user-phone',
+
+    TOAST_NO_RECORDS: 'No Records to show',
 };
 
 export default appConstants;

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {graphql, compose} from 'react-apollo';
 import PropTypes from 'prop-types';
-import Input from '../Global/Input/InputGroup';
-import Button from '../Global/Button/Button';
-import CallOut from "../Callout/Callout";
+import {Classes, Button, InputGroup} from "@blueprintjs/core";
+import CallOut from "../Global/Callout/Callout";
 import appConstants from "../../appConstants";
 import LoginSDL from "./LoginSDL";
+import './login.css'
 
 class Login extends Component {
     constructor() {
@@ -13,6 +13,7 @@ class Login extends Component {
         this.confirm = this.confirm.bind(this);
         this.saveUserData = this.saveUserData.bind(this);
         this.onInputValueChange = this.onInputValueChange.bind(this);
+        this.shouldDisableButton = this.shouldDisableButton.bind(this);
     }
 
     state = {
@@ -21,6 +22,8 @@ class Login extends Component {
         phone: '',
         password: '',
         login: true,
+        loading: false,
+        disabled: true,
         shouldCallOut: false,
         callOut: {
             name: appConstants.CALL_OUT_DANGER,
@@ -31,6 +34,7 @@ class Login extends Component {
 
     confirm = async () => {
         this.hideCallOut();
+        this.setLoading();
         const {name, email, phone, password} = this.state;
         if (this.state.login) {
             const result = await this.props.authenticatePersonMutation({
@@ -53,6 +57,7 @@ class Login extends Component {
             let data = result.data.createPerson;
             data.authenticated ? this.renderHomeOnSuccess(data) : this.renderCallOut(data);
         }
+        this.setLoading();
     };
 
     renderCallOut = (data) => {
@@ -72,6 +77,12 @@ class Login extends Component {
         })
     };
 
+    setLoading = () => {
+        this.setState({
+            loading: !this.state.loading,
+        })
+    };
+
     renderHomeOnSuccess = (data) => {
         this.saveUserData(data);
         this.props.history.push('/');
@@ -85,8 +96,19 @@ class Login extends Component {
         localStorage.setItem(appConstants.MW_USER_PHONE, data.person.phone);
     };
 
-    onInputValueChange = (field, value) => {
-        this.setState({[field]: value});
+    onInputValueChange = (event) => {
+        this.setState({
+            disabled: this.shouldDisableButton(),
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    shouldDisableButton() {
+        if (this.state.login) {
+            return !(this.state.email.length && this.state.password.length);
+        } else {
+            return !(this.state.name.length && this.state.email.length && this.state.phone.length && this.state.password.length);
+        }
     };
 
     render() {
@@ -101,41 +123,47 @@ class Login extends Component {
                     />
                     }
                     {!this.state.login &&
-                    <Input
+                    <InputGroup
                         name={appConstants.INPUT_NAME}
-                        icon={'pt-icon pt-icon-user'}
-                        placeholder={appConstants.INPUT_NAME_PLACEHOLDER}
+                        className={`${Classes.LARGE} input_group`}
+                        leftIconName="user"
                         type='text'
                         onChange={this.onInputValueChange}
+                        placeholder={appConstants.INPUT_NAME_PLACEHOLDER}
                     />
                     }
-                    <Input
+                    <InputGroup
                         name={appConstants.INPUT_EMAIL}
-                        icon={'pt-icon pt-icon-envelope'}
-                        placeholder={appConstants.INPUT_EMAIL_PLACEHOLDER}
+                        className={`${Classes.LARGE} input_group`}
+                        leftIconName="envelope"
                         type='text'
                         onChange={this.onInputValueChange}
+                        placeholder={appConstants.INPUT_EMAIL_PLACEHOLDER}
                     />
                     {!this.state.login &&
-                    <Input
+                    <InputGroup
                         name={appConstants.INPUT_PHONE}
-                        icon={'pt-icon pt-icon-phone'}
-                        placeholder={appConstants.INPUT_PHONE_PLACEHOLDER}
+                        className={`${Classes.LARGE} input_group`}
+                        leftIconName="phone"
                         type='tel'
                         onChange={this.onInputValueChange}
+                        placeholder={appConstants.INPUT_PHONE_PLACEHOLDER}
                     />
                     }
-                    <Input
+                    <InputGroup
                         name={appConstants.INPUT_PASSWORD}
-                        icon={'pt-icon pt-icon-lock'}
-                        placeholder={appConstants.INPUT_PASSWORD_PLACEHOLDER}
+                        className={`${Classes.LARGE} input_group`}
+                        leftIconName="lock"
                         type='password'
                         onChange={this.onInputValueChange}
+                        placeholder={appConstants.INPUT_PASSWORD_PLACEHOLDER}
                     />
                     <Button
-                        buttonClass='pt-button pt-large loginButton'
-                        name={this.state.login ? appConstants.LOGIN : appConstants.SIGN_UP}
+                        className='pt-button pt-large loginButton'
+                        disabled={this.state.disabled}
+                        loading={this.state.loading}
                         onClick={this.confirm}
+                        text={this.state.login ? appConstants.LOGIN : appConstants.SIGN_UP}
                     />
                     <div className='row justifyCenter'>
                         <span>
@@ -143,7 +171,10 @@ class Login extends Component {
                             <a
                                 role='link'
                                 tabIndex='0'
-                                onClick={() => this.setState({login: !this.state.login})}
+                                onClick={() => {
+                                    this.hideCallOut();
+                                    this.setState({login: !this.state.login})
+                                }}
                             >
                             {this.state.login ? appConstants.SIGN_UP : appConstants.LOGIN}
                           </a>

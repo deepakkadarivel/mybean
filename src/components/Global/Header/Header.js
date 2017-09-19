@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Menu, MenuDivider, MenuItem, Popover, Position} from "@blueprintjs/core";
+import {Menu, MenuDivider, MenuItem, Popover, Position, Button} from "@blueprintjs/core";
 import './header.css'
 import {withRouter} from 'react-router'
-import Button from "../Button/Button";
 import appConstants from "../../../appConstants";
 
 const userId = localStorage.getItem(appConstants.MW_USER_ID);
@@ -50,9 +49,9 @@ class Header extends Component {
                         {userId &&
                         <Popover content={compassMenu} position={Position.BOTTOM_RIGHT}>
                             <Button
-                                name={userName}
-                                buttonClass="pt-button pt-minimal pt-icon-user"
+                                iconName='user'
                                 onClick={() => ({})}
+                                text={userName}
                             />
                         </Popover>
                         }
