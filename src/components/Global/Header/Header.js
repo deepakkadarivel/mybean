@@ -37,6 +37,9 @@ class Header extends Component {
                         <Link to='/' className='ml1 no-underline black'>
                             <button className='pt-button pt-minimal'>Home</button>
                         </Link>
+                        <Link to='/todo' className='ml1 no-underline black'>
+                            <button className='pt-button pt-minimal'>Todo</button>
+                        </Link>
                         <Link to='/about' className='ml1 no-underline black'>
                             <button className='pt-button pt-minimal'>About</button>
                         </Link>

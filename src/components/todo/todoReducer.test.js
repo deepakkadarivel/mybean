@@ -1,4 +1,4 @@
-import todoApp from './todoReducer';
+import todoApp from '../../reducers/rootReducer';
 
 describe('todos reducer test', () => {
     it('action ADD_TODO to add todos', () => {
