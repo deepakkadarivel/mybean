@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {ApolloProvider, createNetworkInterface, ApolloClient} from 'react-apollo'
 import { BrowserRouter } from 'react-router-dom'
 import './scss/app.css'
-import App from './components/App';
+import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const networkInterface = createNetworkInterface({

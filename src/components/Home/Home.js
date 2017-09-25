@@ -5,7 +5,7 @@ import {
     gql,
     graphql,
 } from 'react-apollo';
-import appConstants from "../../appConstants";
+import appConstants from "../app/appConstants";
 
 class Home extends Component {
     componentDidMount() {

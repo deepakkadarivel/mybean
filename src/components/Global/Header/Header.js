@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Menu, MenuDivider, MenuItem, Popover, Position, Button} from "@blueprintjs/core";
 import './header.css'
 import {withRouter} from 'react-router'
-import appConstants from "../../../appConstants";
+import appConstants from "../../app/appConstants";
 
 const userId = localStorage.getItem(appConstants.MW_USER_ID);
 const userName = localStorage.getItem(appConstants.MW_USER_NAME);

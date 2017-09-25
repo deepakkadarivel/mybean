@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Header from './Global/Header/Header'
-import Login from "./Login/Login";
-import Home from "./Home/Home";
-import About from "./About/About";
+import Header from '../Global/Header/Header'
+import Login from "../Login/Login";
+import Home from "../Home/Home";
+import About from "../About/About";
 import './App.css';
 
 class App extends Component {

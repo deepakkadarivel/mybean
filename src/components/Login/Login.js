@@ -3,7 +3,7 @@ import {graphql, compose} from 'react-apollo';
 import PropTypes from 'prop-types';
 import {Classes, Button, InputGroup} from "@blueprintjs/core";
 import CallOut from "../Global/Callout/Callout";
-import appConstants from "../../appConstants";
+import appConstants from "../app/appConstants";
 import LoginSDL from "./LoginSDL";
 import './login.css'
 
