@@ -1,10 +1,37 @@
 @import '../../scss/base/variable';
 
 .dash {
-  &_head{
+  &_head {
     width: 100%;
     height: 100px;
     background-color: $white_blue;
+  }
+
+  &_form {
+
+    .container {
+      .row > * {
+        margin-top: 10px;
+      }
+    }
+    &_upload_field {
+      width: 100%;
+    }
+
+    &_desc_field {
+      width: 100%;
+      height: 100px;
+    }
+  }
+}
+
+.pt-popover-target {
+  width: 100%;
+
+  .pt-input-group {
+    input {
+      height: 40px;
+    }
   }
 }
 

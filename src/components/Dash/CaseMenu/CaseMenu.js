@@ -19,7 +19,7 @@ class CaseMenu extends Component {
 
     render() {
         return (
-            <div className={`${Classes.LARGE} pt-select`}>
+            <div className={`${Classes.LARGE} pt-select`} style={{marginTop: '14px'}}>
                 <select
                     value={this.state.selectedValue}
                     onChange={this.handleChange}
