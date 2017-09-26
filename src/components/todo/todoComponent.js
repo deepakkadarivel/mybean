@@ -22,9 +22,7 @@ class todoComponent extends Component {
                         );
                     }}
                 />
-                <Footer
-                    visibilityFilter={visibilityFilter}
-                />
+                <Footer/>
                 <TodoList
                     todos={visibleTodos}
                     onTodoClick={id => this.props.toggleTodo(id)}

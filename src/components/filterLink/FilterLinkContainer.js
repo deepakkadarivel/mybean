@@ -3,7 +3,9 @@ import setVisibilityFilter from "./filterLinkActions";
 import FilterLinkComponent from "./FilterLinkComponent";
 
 function mapStateToProps(state, ownProps) {
-    return {};
+    return {
+        currentFilter: state.todoApp.visibilityFilter,
+    };
 }
 
 function mapDispatchToProps(dispatch) {

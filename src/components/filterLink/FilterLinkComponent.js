@@ -19,6 +19,7 @@ const FilterLinkComponent = ({children, filter, currentFilter, setVisibilityFilt
 FilterLinkComponent.propTypes = {
     children: PropTypes.string.isRequired,
     filter: PropTypes.string.isRequired,
+    currentFilter: PropTypes.string.isRequired,
     setVisibilityFilter: PropTypes.func.isRequired,
 };
 
