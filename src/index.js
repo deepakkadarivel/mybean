@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import todoApp from './reducers/rootReducer';
 import {ApolloProvider, createNetworkInterface, ApolloClient} from 'react-apollo'
-import { BrowserRouter } from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import './scss/app.css'
-import App from './components/App';
+import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const networkInterface = createNetworkInterface({
@@ -24,10 +26,23 @@ const client = new ApolloClient({
     networkInterface
 });
 
+const store = createStore(
+    combineReducers({
+        todoApp,
+        apollo: client.reducer(),
+    }),
+    {}, // initial state
+    compose(
+        applyMiddleware(client.middleware()),
+        // If you are using the devToolsExtension, you can add it here also
+        (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+    )
+);
+
 ReactDOM.render(
     <BrowserRouter>
-        <ApolloProvider client={client}>
-            <App />
+        <ApolloProvider store={store} client={client}>
+            <App/>
         </ApolloProvider>
     </BrowserRouter>
     , document.getElementById('root'));

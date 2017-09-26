@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Menu, MenuDivider, MenuItem, Popover, Position, Button} from "@blueprintjs/core";
 import './header.css'
 import {withRouter} from 'react-router'
-import appConstants from "../../../appConstants";
+import appConstants from "../../app/appConstants";
 
 const userId = localStorage.getItem(appConstants.MW_USER_ID);
 const userName = localStorage.getItem(appConstants.MW_USER_NAME);
@@ -36,6 +36,9 @@ class Header extends Component {
                     <div className='pt-navbar-group pt-align-right'>
                         <Link to='/' className='ml1 no-underline black'>
                             <button className='pt-button pt-minimal'>Home</button>
+                        </Link>
+                        <Link to='/todo' className='ml1 no-underline black'>
+                            <button className='pt-button pt-minimal'>Todo</button>
                         </Link>
                         <Link to='/about' className='ml1 no-underline black'>
                             <button className='pt-button pt-minimal'>About</button>
