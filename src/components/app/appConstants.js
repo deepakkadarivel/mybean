@@ -1,4 +1,7 @@
 const appConstants = {
+    ADD_INVOICE: 'Add Invoice',
+    AMOUNT: 'Amount',
+    CASE: 'Case',
     MY_BEAN: 'MyBean',
     INPUT_NAME: 'name',
     INPUT_NAME_PLACEHOLDER: 'Name',

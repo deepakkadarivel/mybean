@@ -1,0 +1,14 @@
+@import '../../scss/base/variable';
+
+.dash {
+  &_head{
+    width: 100%;
+    height: 100px;
+    background-color: $white_blue;
+  }
+}
+
+.invoice_button {
+  float: right;
+  margin: 20px;
+}

@@ -15,7 +15,7 @@ const Header = ({user, logout}) => (
             </div>
             <div className='pt-navbar-group pt-align-right'>
                 <Link to='/' className='ml1 no-underline black'>
-                    <button className='pt-button pt-minimal'>Home</button>
+                    <button className='pt-button pt-minimal'>Dash</button>
                 </Link>
                 <Link to='/todo' className='ml1 no-underline black'>
                     <button className='pt-button pt-minimal'>Todo</button>
