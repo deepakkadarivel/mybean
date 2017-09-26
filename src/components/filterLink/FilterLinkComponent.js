@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilterLinkComponent = ({children, filter, currentFilter, setVisibilityFilter}) => {
-    if (filter === currentFilter) {
+const FilterLinkComponent = ({children, filter, active, setVisibilityFilter}) => {
+    if (active) {
         return <span>{children}</span>
     }
     return (
@@ -19,7 +19,7 @@ const FilterLinkComponent = ({children, filter, currentFilter, setVisibilityFilt
 FilterLinkComponent.propTypes = {
     children: PropTypes.string.isRequired,
     filter: PropTypes.string.isRequired,
-    currentFilter: PropTypes.string.isRequired,
+    active: PropTypes.bool.isRequired,
     setVisibilityFilter: PropTypes.func.isRequired,
 };
 

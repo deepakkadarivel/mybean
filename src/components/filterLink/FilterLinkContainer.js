@@ -4,7 +4,7 @@ import FilterLinkComponent from "./FilterLinkComponent";
 
 function mapStateToProps(state, ownProps) {
     return {
-        currentFilter: state.todoApp.visibilityFilter,
+        active: ownProps.filter === state.todoApp.visibilityFilter,
     };
 }
 
