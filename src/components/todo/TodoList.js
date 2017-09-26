@@ -3,21 +3,19 @@ import PropTypes from 'prop-types';
 import Todo from "./Todo";
 import filterLinkStateTypes from "../filterLink/filterLinkStateTypes";
 
-const TodoList = ({todos, visibilityFilter, toggleTodo}) => {
-    return (
-        <div>
-            <ul>
-                {getVisibleTodos(todos, visibilityFilter).map(todo =>
-                    <Todo
-                        key={todo.id}
-                        onClick={() => toggleTodo(todo.id)}
-                        {...todo}
-                    />
-                )}
-            </ul>
-        </div>
-    );
-};
+const TodoList = ({todos, visibilityFilter, toggleTodo}) => (
+    <div>
+        <ul>
+            {getVisibleTodos(todos, visibilityFilter).map(todo =>
+                <Todo
+                    key={todo.id}
+                    onClick={() => toggleTodo(todo.id)}
+                    {...todo}
+                />
+            )}
+        </ul>
+    </div>
+);
 
 const getVisibleTodos = (todos, visibilityFilter) => {
     switch (visibilityFilter) {
