@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import FilterLinkContainer from "../filterLink/FilterLinkContainer";
 import filterLinkStateTypes from "../filterLink/filterLinkStateTypes";
 import TodoList from "./TodoList";
+import AddTodo from "./AddTodo";
+import Footer from "./Footer";
 
 class todoComponent extends Component {
     render() {
@@ -13,42 +14,17 @@ class todoComponent extends Component {
         const visibleTodos = this.getVisibleTodos(todos, visibilityFilter);
         return (
             <div className="todoApp">
-                <input type="text" ref={node => {
-                    this.input = node
-                }}/>
-                <button
-                    onClick={() => {
+                <AddTodo
+                    onAddClick={text => {
                         this.props.addTodo(
-                            this.input.value,
+                            text,
                             this.getRandomInt(1, 100)
                         );
-                        this.input.value = '';
                     }}
-                >
-                    Add Todo
-                </button>
-                Show :
-                {' '}
-                <FilterLinkContainer
-                    filter={filterLinkStateTypes.SHOW_ALL}
-                    currentFilter={visibilityFilter}
-                >
-                    All
-                </FilterLinkContainer>
-                {' '}
-                <FilterLinkContainer
-                    filter={filterLinkStateTypes.SHOW_ACTIVE}
-                    currentFilter={visibilityFilter}
-                >
-                    Active
-                </FilterLinkContainer>
-                {' '}
-                <FilterLinkContainer
-                    filter={filterLinkStateTypes.SHOW_COMPLETE}
-                    currentFilter={visibilityFilter}
-                >
-                    Complete
-                </FilterLinkContainer>
+                />
+                <Footer
+                    visibilityFilter={visibilityFilter}
+                />
                 <TodoList
                     todos={visibleTodos}
                     onTodoClick={id => this.props.toggleTodo(id)}
