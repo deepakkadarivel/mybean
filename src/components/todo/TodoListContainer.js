@@ -3,8 +3,8 @@ import TodoList from "./TodoList";
 import {toggleTodo} from "./todoActions";
 
 const mapStateToProps = (state, ownProps) => ({
-    todos: state.todoApp.todos,
-    visibilityFilter: state.todoApp.visibilityFilter,
+    todos: state.myBeanApp.todos,
+    visibilityFilter: state.myBeanApp.visibilityFilter,
 });
 
 const mapDispatchToProps = (dispatch) => ({

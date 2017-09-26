@@ -3,7 +3,7 @@ import setVisibilityFilter from "./filterLinkActions";
 import FilterLinkComponent from "./FilterLinkComponent";
 
 const mapStateToProps = (state, ownProps) => ({
-    active: ownProps.filter === state.todoApp.visibilityFilter,
+    active: ownProps.filter === state.myBeanApp.visibilityFilter,
 });
 
 const mapDispatchToProps = (dispatch) => ({

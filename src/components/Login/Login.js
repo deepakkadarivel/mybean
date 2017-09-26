@@ -11,7 +11,6 @@ class Login extends Component {
     constructor() {
         super();
         this.confirm = this.confirm.bind(this);
-        this.saveUserData = this.saveUserData.bind(this);
         this.onInputValueChange = this.onInputValueChange.bind(this);
         this.shouldDisableButton = this.shouldDisableButton.bind(this);
     }
@@ -57,11 +56,11 @@ class Login extends Component {
             let data = result.data.createPerson;
             data.authenticated ? this.renderHomeOnSuccess(data) : this.renderCallOut(data);
         }
-        this.setLoading();
     };
 
     renderCallOut = (data) => {
         this.setState({
+            loading: !this.state.loading,
             shouldCallOut: true,
             callOut: {
                 name: appConstants.CALL_OUT_DANGER,
@@ -84,16 +83,8 @@ class Login extends Component {
     };
 
     renderHomeOnSuccess = (data) => {
-        this.saveUserData(data);
+        this.props.setUser(data.access_token, data.person.id, data.person.name, data.person.email, data.person.phone);
         this.props.history.push('/');
-    };
-
-    saveUserData = (data) => {
-        localStorage.setItem(appConstants.MW_AUTH_TOKEN, data.access_token);
-        localStorage.setItem(appConstants.MW_USER_ID, data.person.id);
-        localStorage.setItem(appConstants.MW_USER_NAME, data.person.name);
-        localStorage.setItem(appConstants.MW_USER_EMAIL, data.person.email);
-        localStorage.setItem(appConstants.MW_USER_PHONE, data.person.phone);
     };
 
     onInputValueChange = (event) => {

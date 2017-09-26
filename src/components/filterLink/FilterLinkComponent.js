@@ -6,7 +6,7 @@ const FilterLinkComponent = ({children, filter, active, setVisibilityFilter}) =>
         return <span>{children}</span>
     }
     return (
-        <a href="#"
+        <a href=""
            onClick={(e) => {
                e.preventDefault();
                setVisibilityFilter(filter)

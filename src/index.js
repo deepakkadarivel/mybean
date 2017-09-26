@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import todoApp from './reducers/rootReducer';
+import myBeanApp from './reducers/rootReducer';
 import {ApolloProvider, createNetworkInterface, ApolloClient} from 'react-apollo'
 import {BrowserRouter} from 'react-router-dom'
 import './scss/app.css'
@@ -28,7 +28,7 @@ const client = new ApolloClient({
 
 const store = createStore(
     combineReducers({
-        todoApp,
+        myBeanApp: myBeanApp,
         apollo: client.reducer(),
     }),
     {}, // initial state
