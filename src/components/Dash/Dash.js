@@ -4,6 +4,7 @@ import {DateInput} from "@blueprintjs/datetime";
 import './dash.css';
 import appConstants from "../app/appConstants";
 import CaseMenu from "./CaseMenu/CaseMenu";
+import caseTypes from "./CaseMenu/caseTypes";
 
 class Dash extends Component {
     constructor() {
@@ -13,8 +14,19 @@ class Dash extends Component {
     }
 
     state = {
-        caseText: '',
+        file: '',
+        caseText: caseTypes[0],
         date: new Date(),
+        amount: '',
+        description: '',
+        disabled: true,
+    };
+
+    onInputValueChange = (event) => {
+        this.setState({
+            // disabled: this.shouldDisableButton(),
+            [event.target.name]: event.target.value,
+        });
     };
 
     onCaseChange(value) {
@@ -24,6 +36,15 @@ class Dash extends Component {
     };
 
     handleDateChange = (date) => this.setState({date});
+
+    handleFileChange = (e) => {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        this.setState({
+            file: file,
+        });
+    };
 
     render() {
         return (
@@ -47,15 +68,15 @@ class Dash extends Component {
                                     {appConstants.FILE}
                                 </label>
                                 <label className={`${Classes.LARGE} pt-file-upload dash_form_upload_field`}>
-                                    <input type="file" className='pt-large'/>
-                                    <span className="pt-file-upload-input">Choose file...</span>
+                                    <input type="file" className='pt-large' onChange={this.handleFileChange}/>
+                                    <span className="pt-file-upload-input">{this.state.file !== '' ? this.state.file.name : 'Choose file...'}</span>
                                 </label>
                             </div>
                             <div className="col-lg-6">
                                 <label className="pt-label">
                                     {appConstants.CASE}
-                                <CaseMenu
-                                    onChange={this.onCaseChange}/>
+                                    <CaseMenu
+                                        onChange={this.onCaseChange}/>
                                 </label>
                             </div>
                         </div>
@@ -65,12 +86,11 @@ class Dash extends Component {
                                     {appConstants.AMOUNT}
                                 </label>
                                 <InputGroup
-                                    name={appConstants.AMOUNT}
+                                    name={appConstants.INPUT_AMOUNT}
                                     className={`${Classes.LARGE} input_group`}
                                     leftIconName="dollar"
                                     type='number'
-                                    onChange={() => {
-                                    }}
+                                    onChange={this.onInputValueChange}
                                     placeholder={appConstants.AMOUNT}
                                 />
                             </div>
@@ -91,7 +111,30 @@ class Dash extends Component {
                                 <label className="pt-label">
                                     {appConstants.DESCRIPTION}
                                 </label>
-                                <textarea className="pt-input pt-intent-primary dash_form_desc_field" dir="auto"/>
+                                <textarea
+                                    name={appConstants.INPUT_DESCRIPTION}
+                                    className="pt-input dash_form_desc_field"
+                                    dir="auto"
+                                    onChange={this.onInputValueChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-lg-1">
+                                <Button
+                                    className='cancel_button pt-large'
+                                    onClick={() => {
+                                    }}
+                                    text={appConstants.CANCEL}
+                                />
+                            </div>
+                            <div className="col-lg-1">
+                                <Button
+                                    className='upload_button pt-large pt-intent-primary'
+                                    onClick={() => {
+                                    }}
+                                    text={appConstants.UPLOAD}
+                                />
                             </div>
                         </div>
                     </div>
