@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import FilterLinkContainer from "../filterLink/FilterLinkContainer";
 import filterLinkStateTypes from "../filterLink/filterLinkStateTypes";
+import TodoList from "./TodoList";
 
 class todoComponent extends Component {
     render() {
@@ -48,21 +49,10 @@ class todoComponent extends Component {
                 >
                     Complete
                 </FilterLinkContainer>
-                <ul>
-                    {visibleTodos.map(todo =>
-                        <li
-                            key={todo.id}
-                            onClick={() => {
-                                this.props.toggleTodo(todo.id)
-                            }}
-                            style={
-                                {textDecoration: todo.complete ? 'line-through' : 'none'}
-                            }
-                        >
-                            {todo.text}
-                        </li>
-                    )}
-                </ul>
+                <TodoList
+                    todos={visibleTodos}
+                    onTodoClick={id => this.props.toggleTodo(id)}
+                />
             </div>
         );
     }
