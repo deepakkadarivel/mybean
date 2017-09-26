@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import todoComponent from "./todoComponent";
-import {addTodo, toggleTodo} from "./todoActions";
+import {addTodo} from "./todoActions";
+import AddTodo from "./AddTodo";
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -14,10 +14,7 @@ function mapDispatchToProps(dispatch) {
         addTodo: (text, id) => {
             dispatch(addTodo(text, id))
         },
-        toggleTodo: (id) => {
-            dispatch(toggleTodo(id))
-        },
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(todoComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

@@ -5,7 +5,7 @@ import Login from "../Login/Login";
 import Home from "../Home/Home";
 import About from "../About/About";
 import './App.css';
-import todoContainer from "../todo/todoContainer";
+import TodoApp from "../todo/TodoApp";
 
 class App extends Component {
     render() {
@@ -14,7 +14,7 @@ class App extends Component {
                 <Header/>
                 <Switch>
                     <Route exact path='/' component={Home}/>
-                    <Route exact path='/todo' component={todoContainer}/>
+                    <Route exact path='/todo' component={TodoApp}/>
                     <Route exact path='/about' component={About}/>
                     <Route exact path='/login' component={Login}/>
                 </Switch>

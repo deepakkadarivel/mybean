@@ -1,4 +1,4 @@
-import todoActionTypes from "./toActionTypes";
+import todoActionTypes from "./todoActionTypes";
 
 const addTodo = (text, id) => {
     return {

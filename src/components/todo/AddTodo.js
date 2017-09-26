@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddTodo = ({onAddClick}) => {
+const AddTodo = ({addTodo}) => {
     let input;
     return (
         <div>
@@ -9,7 +9,7 @@ const AddTodo = ({onAddClick}) => {
             }}/>
             <button
                 onClick={() => {
-                    onAddClick(input.value);
+                    addTodo(input.value, getRandomInt(1, 100));
                     input.value = '';
                 }}
             >
@@ -17,6 +17,12 @@ const AddTodo = ({onAddClick}) => {
             </button>
         </div>
     );
+};
+
+const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
 };
 
 export default AddTodo;

@@ -1,5 +1,5 @@
 import todoInitialState from "./todoInitialState";
-import todoActionTypes from "./toActionTypes";
+import todoActionTypes from "./todoActionTypes";
 
 const todo = (state, action) => {
     switch (action.type) {
