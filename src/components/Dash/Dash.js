@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Classes, Button, InputGroup} from "@blueprintjs/core";
 import {DateInput} from "@blueprintjs/datetime";
+import request from "superagent";
 import './dash.css';
 import appConstants from "../app/appConstants";
 import CaseMenu from "./CaseMenu/CaseMenu";
@@ -11,6 +12,7 @@ class Dash extends Component {
         super();
         this.onCaseChange = this.onCaseChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.uploadRecord = this.uploadRecord.bind(this);
     }
 
     state = {
@@ -46,6 +48,23 @@ class Dash extends Component {
         });
     };
 
+    uploadRecord = () => {
+        const fileToUpload = this.state.file;
+        console.log("fileToUpload", fileToUpload);
+        request
+            .put('http://localhost:8181/upload')
+            .accept('application/json')
+            .field('file', 'file')
+            .attach('file', fileToUpload)
+            .end((err, res) => {
+                if (err || !res.ok) {
+                    console.log(JSON.stringify(res.body));
+                } else {
+                    console.log(JSON.stringify(res.body));
+                }
+            });
+    };
+
     render() {
         return (
             <div className='dash'>
@@ -69,7 +88,8 @@ class Dash extends Component {
                                 </label>
                                 <label className={`${Classes.LARGE} pt-file-upload dash_form_upload_field`}>
                                     <input type="file" className='pt-large' onChange={this.handleFileChange}/>
-                                    <span className="pt-file-upload-input">{this.state.file !== '' ? this.state.file.name : 'Choose file...'}</span>
+                                    <span
+                                        className="pt-file-upload-input">{this.state.file !== '' ? this.state.file.name : 'Choose file...'}</span>
                                 </label>
                             </div>
                             <div className="col-lg-6">
@@ -131,8 +151,7 @@ class Dash extends Component {
                             <div className="col-lg-1">
                                 <Button
                                     className='upload_button pt-large pt-intent-primary'
-                                    onClick={() => {
-                                    }}
+                                    onClick={this.uploadRecord}
                                     text={appConstants.UPLOAD}
                                 />
                             </div>
