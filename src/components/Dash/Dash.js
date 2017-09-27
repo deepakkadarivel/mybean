@@ -55,10 +55,17 @@ class Dash extends Component {
             .put('http://localhost:8181/upload')
             .accept('application/json')
             .field('file', 'file')
+            .field({
+                'access_token': this.props.appUser.access_token,
+                'case': this.state.caseText,
+                'date': this.state.date,
+                'amount': this.state.amount,
+                'description': this.state.description,
+            })
             .attach('file', fileToUpload)
             .end((err, res) => {
                 if (err || !res.ok) {
-                    console.log(JSON.stringify(res.body));
+                    console.log(err);
                 } else {
                     console.log(JSON.stringify(res.body));
                 }
